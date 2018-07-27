@@ -1,2 +1,1 @@
-# Odoo-12-Development-Essentials-Fourth-Edition
-Odoo 12 Development Essentials, Fourth Edition, published by Packt
+# The code for this repository is under development :construction_worker:

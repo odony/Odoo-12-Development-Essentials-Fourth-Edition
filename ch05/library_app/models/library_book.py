@@ -1,4 +1,4 @@
-from odoo import fields, models
+from odoo import api, fields, models
 from odoo.exceptions import Warning
 
 
@@ -14,6 +14,7 @@ class Book(models.Model):
     publisher_id = fields.Many2one('res.partner', string='Publisher')
     author_ids = fields.Many2many('res.partner', string='Authors')
 
+    @api.multi
     def _check_isbn(self):
         """Check one Book's ISBN"""
         self.ensure_one()
@@ -25,6 +26,7 @@ class Book(models.Model):
             check = 10 - remain if remain != 0 else 0
             return digits[-1] == check
 
+    @api.multi
     def button_check_isbn(self):
         for book in self:
             if not book.isbn:
@@ -33,3 +35,4 @@ class Book(models.Model):
             if book.isbn and not book._check_isbn():
                 raise Warning(
                     '%s is an invalid ISBN' % book.isbn)
+        return True

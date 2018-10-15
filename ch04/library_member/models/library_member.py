@@ -6,5 +6,10 @@ class Member(models.Model):
     _description = 'Library Member'
     # _inherits = {'res.partner': 'partner_id'}
     card_number = fields.Char()
+    # partner_id = fields.Many2one('res.partner')
+    # Alternative syntax, cwinstead of using _inherits:
     partner_id = fields.Many2one(
-        'res.partner', delegate=True, ondelete='cascade', required=True)
+        'res.partner', 
+        delegate=True, 
+        ondelete='cascade', 
+        required=True)

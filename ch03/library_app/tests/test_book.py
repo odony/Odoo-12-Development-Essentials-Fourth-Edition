@@ -5,7 +5,7 @@ class TestBook(TransactionCase):
 
     def setUp(self, *args, **kwargs):
         result = super(TestBook, self).setUp(*args, **kwargs)
-        # Prepare environemnt with the Admin user
+        # Prepare environment with the Admin user
         user_admin = self.env.ref('base.user_admin')
         self.env = self.env(user=user_admin)
         # Setup test data

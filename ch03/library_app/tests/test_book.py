@@ -1,23 +1,24 @@
-from odoo.tests.common import TransactionCase 
- 
-class TestBook(TransactionCase): 
- 
-    def setUp(self, *args, **kwargs): 
-        result = super(TestBook, self).setUp(*args, **kwargs) 
-        user_admin = self.env.ref('base.user_demo') 
-        self.env= self.env(user=user_demo) 
-        return result
+from odoo.tests.common import TransactionCase
 
-    def test_create(self): 
-        "Create a Book" 
-        Book = self.env['library.book'] 
-        book = Book.create({'name': 'Odoo Development Essentials'}) 
-        self.assertEqual(book.active, True)
 
-    def test_check_isbn(self): 
-        "Check valid ISBN" 
-        Book = self.env['library.book'] 
-        book = Book.create({
+class TestBook(TransactionCase):
+
+    def setUp(self, *args, **kwargs):
+        result = super(TestBook, self).setUp(*args, **kwargs)
+        # Prepare environemnt with the Admin user
+        user_admin = self.env.ref('base.user_admin')
+        self.env = self.env(user=user_admin)
+        # Setup test data
+        self.Book = self.env['library.book']
+        self.book_ode = self.Book.create({
             'name': 'Odoo Development Essentials',
             'isbn': '978-1-78439-279-6'})
-        self.assertTrue(book.check_isbn())
+        return result
+
+    def test_create(self):
+        "Test Books are active by default"
+        self.assertEqual(self.book_ode.active, True)
+
+    def test_check_isbn(self):
+        "Check valid ISBN"
+        self.assertTrue(self.book_ode._check_isbn())

@@ -4,8 +4,8 @@
             inherit_id="library_app.book_list_template">
 
     <xpath expr="//span[@t-field='book.publisher_id']" position="after">
-      <t t-if="book.is_available">
-        <b>(Available)</b>
+      <t t-if="not book.is_available">
+        <b>(Not Available)</b>
       </t>
     </xpath>
 

@@ -1,17 +1,18 @@
-{ 
-'name': 'Library Members and Borrowing', 
-'description': 'Use library cards for people to borrow books.', 
-'author': 'Daniel Reis', 
+{
+'name': 'Library Members and Borrowing',
+'description': 'Use library cards for people to borrow books.',
+'author': 'Daniel Reis',
 'data': [
-    'security/ir.model.access.csv',
     'views/book_view.xml',
-    'views/book_list_template.xml',
+    'security/ir.model.access.csv',
+    'views/member_view.xml',
     'views/library_menu.xml',
+    'views/book_list_template.xml',
 ],
 'depends': [
     'library_app',
     'mail',
-], 
-'application': False, 
-} 
+],
+'application': False,
+}
 

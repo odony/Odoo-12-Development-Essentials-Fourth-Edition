@@ -14,12 +14,6 @@ class Book(models.Model):
     publisher_id = fields.Many2one('res.partner', string='Publisher')
     author_ids = fields.Many2many('res.partner', string='Authors')
 
-    # Dynamic Reference Field
-    highlighted_id = fields.Reference(
-        [('library.book', 'Book'), ('res.partner', 'Author')],
-        'Highlighted'
-    )
-
     @api.multi
     def _check_isbn(self):
         """Check one Book's ISBN"""
@@ -42,3 +36,5 @@ class Book(models.Model):
                 raise Warning(
                     '%s is an invalid ISBN' % book.isbn)
         return True
+
+    category_id = fields.Many2one('library.book.category', name='Category')
